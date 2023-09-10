@@ -1,6 +1,10 @@
 # HTTPtestify
 
-> HTTPtestify is a versatile library for testing HTTP APIs in Node.js environments. It provides a promise-based API inspired by Axios, allowing you to make HTTP requests, perform assertions on responses, and conduct integration testing with ease.
+> HTTPtestify is a powerful and flexible library for testing HTTP APIs in Node.js environments. With its promise-based API, rich feature set, and seamless integration, HTTPtestify simplifies the process of writing effective API tests, making it an essential tool for any developer's testing toolkit.
+
+## What it is
+
+HTTPtestify is a JavaScript library designed to streamline the testing of HTTP APIs in Node.js applications. Whether you're performing integration tests, asserting API responses, or testing complex scenarios, HTTPtestify provides the tools you need to ensure your APIs are reliable, performant, and accurate.
 
 ## Features
 
@@ -25,7 +29,7 @@
 
 ## Installation
 
-You can install HTTPtestify using npm:
+To get started with HTTPtestify, you'll need to install it using npm. Open your terminal and run the following command:
 
 ```bash
 npm install http-testify
@@ -33,19 +37,35 @@ npm install http-testify
 
 ## Usage
 
-### Making HTTP Requests
+**TypeScript**
 
-To make HTTP requests using HTTPtestify, you can follow this example:
+To use HTTPtestify in a TypeScript project, follow this example:
 
-```javascript
-const HTTPtestify = require("http-testify");
-const app = require("./your-app"); // Replace with your actual app instance
-
-// Create a mock server instance with the target app and port
-const server = HTTPtestify.request(app);
+```ts
+import HTTPtestify from "http-testify";
+// Replace with your actual app instance
+import app from "./your-app"
 
 // Make a GET request to a specific route
-server
+HTTPtestify.request(app)
+  .get("/api/data")
+  .then((response) => {
+    console.log("Response from /api/data:", response.data);
+  })
+  .catch((error: Error) => {
+    console.error("Error occurred:", error);
+  });
+```
+**JavaScript**
+To use HTTPtestify in a JavaScript project, follow this example:
+
+```js
+const HTTPtestify = require("http-testify");
+// Replace with your actual app instance
+const app = require("./your-app");
+
+// Make a GET request to a specific route
+HTTPtestify.request(app)
   .get("/api/data")
   .then((response) => {
     console.log("Response from /api/data:", response.data);
@@ -54,35 +74,3 @@ server
     console.error("Error occurred:", error);
   });
 ```
-
-### Parallel Requests with `all`
-
-You can perform multiple requests in parallel using the all method:
-
-```javascript
-// Use promise-based operations
-const promises = server
-  .all((instance) => [instance.get("/api/data1"), instance.get("/api/data2")])
-  .then((responses) => {
-    console.log("All responses:", responses);
-  })
-  .catch((error) => {
-    console.error("An error occurred:", error);
-  });
-```
-
-## Docs
-
-HTTPtestify provides a variety of methods to facilitate testing HTTP interactions. Check the [documentation](https://github.com/alok-shete/http-testify) for detailed information.
-
-## Contributing
-
-Contributions to HTTPtestify are welcome! Feel free to submit issues and pull requests on the [GitHub repository](https://github.com/alok-shete/http-testify).
-
-## Donate
-
-Please consider donating if you think HTTPtestify is helpful to you or that my work is valuable. I am happy if you can help me [buy a cup of coffee. ❤️](https://www.buymeacoffee.com/shetalok)
-
-## License
-
-This project is licensed under the [MIT License](https://github.com/alok-shete/http-testify/blob/main/LICENSE).

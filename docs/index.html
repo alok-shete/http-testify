@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>HTTP-Testify</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+  <link rel="stylesheet" href="./styles/vue.css" />
+</head>
+
+<body>
+  <div id="app" />
+  <script>
+    window.$docsify = {
+      name: "HTTP Testify",
+      repo: "https://github.com/alok-shete/http-testify",
+      coverpage: true,
+      subMaxLevel: 1, // Set the depth of sidebar links
+    };
+  </script>
+  <!-- Docsify v4 -->
+  <script src="./packages/docsify.js"></script>
+  <script src="./packages/prism-bash.min.js"></script>
+  <script src="./packages/prism-typescript.min.js"></script>
+  <script>
+
+    window.onload = function () {
+
+      const packageVersion = document.getElementById('packageVersion');
+
+      if (packageVersion) {
+        fetch("https://registry.npmjs.org/hooks-box").then((res) => res.json()).then((data) => {
+          const { latest } = data["dist-tags"] || {}
+          if (latest) {
+            packageVersion.textContent = latest
+          }
+        }).catch((err) => console.log(err.message))
+      }
+
+
+    };
+
+
+
+  </script>
+</body>
+
+</html>
+<!-- docsify serve docs -->
