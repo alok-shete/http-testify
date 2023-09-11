@@ -81,7 +81,7 @@ Contributions to HTTPtestify are welcome! Feel free to submit issues and pull re
 
 ## Donate
 
-Please consider donating if you think HTTPtestify is helpful to you or that my work is valuable. I am happy if you can help me [buy a cup of coffee. ❤️](https://www.buymeacoffee.com/shetalok)
+Please consider donating if you think HTTPtestify is helpful to you or that my work is valuable. I am happy if you can help me [buy a cup of coffee. ❤️](https://www.buymeacoffee.com/shetealok)
 
 ## License
 
