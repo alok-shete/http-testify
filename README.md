@@ -73,7 +73,7 @@ const promises = server
 
 ## Docs
 
-HTTPtestify provides a variety of methods to facilitate testing HTTP interactions. Check the [documentation](https://alok-shete.github.io/http-testify/) for detailed information.
+HTTPtestify provides a variety of methods to facilitate testing HTTP interactions. Check the [documentation](https://httptestify.web.app) for detailed information.
 
 ## Contributing
 
