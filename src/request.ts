@@ -57,5 +57,10 @@ export function request(
   module.all = promiseModule(server, configOptions).all;
   module.allSettled = promiseModule(server, configOptions).allSettled;
   module.race = promiseModule(server, configOptions).race;
+  module.closeConnection = server.closeConnection
+  module.stayConnected = () => {
+    server.stayConnected()
+    return module;
+  }
   return module;
 }

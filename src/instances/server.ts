@@ -54,6 +54,7 @@ export function serverInstance(
   const { port = 65025 } = configOptions || {};
 
   let server: ServerInstance;
+  let keepOpen = false
 
   if (typeof app === "function") {
     server = http.createServer(app) as ServerInstance;
@@ -65,14 +66,15 @@ export function serverInstance(
 
   if (["function", "object"].includes(typeof app)) {
     server.baseUrl = `http://localhost:${port}`;
-  } else {
-    server.baseUrl = typeof app == "string" ? app : undefined;
+  } else if (typeof app == "string") {
+    server.baseUrl = app;
   }
+
 
   server.start = function () {
     if (
       ["function", "object"].includes(typeof app) &&
-      typeof server.address != "undefined"
+      typeof server.address != "undefined" && !keepOpen
     ) {
       server = server.listen(port);
     }
@@ -81,11 +83,25 @@ export function serverInstance(
   server.end = function () {
     if (
       ["function", "object"].includes(typeof app) &&
-      typeof server.getConnections !== "undefined"
+      typeof server.getConnections !== "undefined" && !keepOpen
     ) {
       server.close();
     }
   };
+
+  server.stayConnected = function () {
+    if (!keepOpen) {
+      server.start()
+      keepOpen = true;
+    }
+  }
+
+  server.closeConnection = function () {
+    if (keepOpen) {
+      keepOpen = false;
+      server.close()
+    }
+  }
 
   return server;
 }
