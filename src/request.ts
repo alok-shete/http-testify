@@ -48,19 +48,16 @@ import { promiseModule } from "./modules/promise";
  * @see {@link defaultModule} The function for configuring the default request module.
  * @see {@link promiseModule} The function for creating a promise-based module.
  */
-export function request(
-  app?: RequestApp,
-  configOptions?: RequestConfigOptions
-): RequestInstance {
+export function request(app?: RequestApp, configOptions?: RequestConfigOptions): RequestInstance {
   const server = serverInstance(app, configOptions);
   const module = defaultModule(server, configOptions);
   module.all = promiseModule(server, configOptions).all;
   module.allSettled = promiseModule(server, configOptions).allSettled;
   module.race = promiseModule(server, configOptions).race;
-  module.closeConnection = server.closeConnection
+  module.closeConnection = server.closeConnection;
   module.stayConnected = () => {
-    server.stayConnected()
+    server.stayConnected();
     return module;
-  }
+  };
   return module;
 }

@@ -27,19 +27,19 @@ describe("HttpTestify", () => {
     HTTPtestify.request(testExpressApp),
     HTTPtestify.request(`http://localhost:${testPort.one}`),
     HTTPtestify.request(testHttpApp, {
-      port: testPort.two
+      port: testPort.two,
     }).stayConnected(),
     HTTPtestify.request(http.createServer(testHttpApp), {
-      port: testPort.three
+      port: testPort.three,
     }).stayConnected(),
     HTTPtestify.request(testExpressApp, {
-      port: testPort.four
+      port: testPort.four,
     }).stayConnected(),
   ]) {
     describe("", () => {
       after(() => {
-        reference.closeConnection()
-      })
+        reference.closeConnection();
+      });
       for (const method of ["get", "post", "put", "delete"]) {
         for (const status of [200, 300, 400, 500]) {
           it(`method:${method}, status:${status}`, async () => {
@@ -75,7 +75,7 @@ describe("HttpTestify", () => {
                   },
                   {
                     timeout: 1,
-                  }
+                  },
                 );
               }
               assert.fail("No Error Detected");
@@ -85,6 +85,6 @@ describe("HttpTestify", () => {
           });
         }
       }
-    })
+    });
   }
 });

@@ -1,9 +1,5 @@
 import { requestInstance } from "../instances/request";
-import {
-  RequestConfigOptions,
-  RequestPromiseCallback,
-  ServerInstance,
-} from "../types";
+import { RequestConfigOptions, RequestPromiseCallback, ServerInstance } from "../types";
 
 /**
  * Creates a promise-based module for making requests using an Axios instance.
@@ -44,10 +40,7 @@ import {
  * @see {@link RequestConfigOptions} The type definition for the configuration options.
  * @see {@link RequestPromiseCallback} The type definition for the callback function that returns promises for requests.
  */
-export const promiseModule = (
-  server: ServerInstance,
-  configOptions?: RequestConfigOptions
-) => {
+export const promiseModule = (server: ServerInstance, configOptions?: RequestConfigOptions) => {
   /**
    * Creates and configures a request instance for making HTTP requests with attached interceptors.
    *
@@ -95,7 +88,7 @@ export const promiseModule = (
         } else {
           return Promise.reject(error);
         }
-      }
+      },
     );
 
     return instance;
@@ -161,9 +154,7 @@ export const promiseModule = (
       return processPromise(Promise.all(callback(createRequestInstance())));
     },
     allSettled: (callback: RequestPromiseCallback) => {
-      return processPromise(
-        Promise.allSettled(callback(createRequestInstance()))
-      );
+      return processPromise(Promise.allSettled(callback(createRequestInstance())));
     },
     race: (callback: RequestPromiseCallback) => {
       return processPromise(Promise.race(callback(createRequestInstance())));

@@ -96,10 +96,7 @@ const server = HTTPtestify.request(app);
 
 // Use promise-based operations
 server
-  .allSettled((instance) => [
-    instance.get("/api/data1"),
-    instance.get("/api/data2"),
-  ])
+  .allSettled((instance) => [instance.get("/api/data1"), instance.get("/api/data2")])
   .then((states) => {
     console.log("Response states:", states);
   });

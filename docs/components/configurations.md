@@ -1,11 +1,12 @@
 # Configurations
+
 > In HTTPtestify, you have the flexibility to configure various settings for your mock server. These configurations allow you to tailor your testing environment to specific needs, ensuring that your API testing process is efficient and effective.
 
 ## Port
 
 HTTPtestify allows you to configure the port for your mock server, giving you control over the port used for testing your API endpoints. This configuration is particularly useful when you want to ensure that your mock server runs on a specific port during development and testing.
 
- **Setting the Port**
+**Setting the Port**
 
 To set the port for your mock server, follow these steps:
 

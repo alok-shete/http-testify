@@ -3,32 +3,32 @@ import * as http from "http";
 
 import { Express } from "express";
 
+export type ANY = any;
+
 /**
  * Represents a callback function that provides an Axios instance and returns an array of promises for Axios responses.
  *
  * @param {AxiosInstance} instance - The Axios instance to use for making requests.
- * @returns {Array<Promise<AxiosResponse<any, any>>>} - An array of promises for Axios responses.
+ * @returns {Array<Promise<AxiosResponse<ANY, ANY>>>} - An array of promises for Axios responses.
  */
 export type RequestPromiseCallback = (
-  instance: AxiosInstance
-) => Array<Promise<AxiosResponse<any, any>>>;
+  instance: AxiosInstance,
+) => Array<Promise<AxiosResponse<ANY, ANY>>>;
 
 /**
  * Represents an array of Axios responses returned from multiple concurrent requests using `Axios.all`.
  */
-export type RequestAllResponse = AxiosResponse<any, any>[];
+export type RequestAllResponse = AxiosResponse<ANY, ANY>[];
 
 /**
  * Represents an array of promise settlement results from multiple concurrent requests using `Axios.allSettled`.
  */
-export type RequestAllSettledResponse = PromiseSettledResult<
-  AxiosResponse<any, any>
->[];
+export type RequestAllSettledResponse = PromiseSettledResult<AxiosResponse<ANY, ANY>>[];
 
 /**
  * Represents an Axios response from a request that wins a race among multiple concurrent requests using `Axios.race`.
  */
-export type RequestRaceResponse = AxiosResponse<any, any>;
+export type RequestRaceResponse = AxiosResponse<ANY, ANY>;
 
 /**
  * RequestInstance represents an AxiosInstance with extended functionality for making HTTP requests.
@@ -47,9 +47,7 @@ export type RequestInstance = AxiosInstance & {
    * @param callback - A function that specifies the requests to be made.
    * @returns A Promise that resolves to an array of response states.
    */
-  allSettled: (
-    callback: RequestPromiseCallback
-  ) => Promise<RequestAllSettledResponse>;
+  allSettled: (callback: RequestPromiseCallback) => Promise<RequestAllSettledResponse>;
 
   /**
    * Races multiple HTTP requests and returns the response of the first completed request.
@@ -70,16 +68,11 @@ export type RequestInstance = AxiosInstance & {
   closeConnection: () => void;
 };
 
-
 /**
  * Represents the type that can be used to define a server application.
  * It can be an Express application, an http.Server instance, a function that starts the server, or a base URL.
  */
-export type RequestApp =
-  | Express
-  | http.Server
-  | ((...res: any) => void | Promise<void>)
-  | string;
+export type RequestApp = Express | http.Server | ((...res: ANY) => void | Promise<void>) | string;
 
 /**
  * Represents configuration options that can be used to customize request-related settings.

@@ -5,7 +5,7 @@ const responseMessage = {
   message: "This is a normal response",
 };
 
- const testHttpApp = async (req, res) => {
+const testHttpApp = async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const { pathname } = parsedUrl;
   if (
@@ -39,6 +39,4 @@ const responseMessage = {
   }
 };
 
-
-
-export default testHttpApp
+export default testHttpApp;

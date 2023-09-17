@@ -44,7 +44,7 @@ To use HTTPtestify in a TypeScript project, follow this example:
 ```ts
 import HTTPtestify from "http-testify";
 // Replace with your actual app instance
-import app from "./your-app"
+import app from "./your-app";
 
 // Make a GET request to a specific route
 HTTPtestify.request(app)
@@ -56,6 +56,7 @@ HTTPtestify.request(app)
     console.error("Error occurred:", error);
   });
 ```
+
 **JavaScript**
 To use HTTPtestify in a JavaScript project, follow this example:
 

@@ -1,16 +1,16 @@
 import { RequestInstance, request } from "../src";
 import testExpressApp from "./controller/servers/express";
 
-const instance = request(testExpressApp)
+const instance = request(testExpressApp);
 
 describe("Dev Test Cases", () => {
   before(() => {
-    instance.stayConnected()
-  })
+    instance.stayConnected();
+  });
 
   after(() => {
-    instance.closeConnection()
-  })
+    instance.closeConnection();
+  });
 
   it("Simple", async () => {
     const response = await Promise.race([

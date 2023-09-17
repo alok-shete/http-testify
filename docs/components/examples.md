@@ -1,5 +1,7 @@
 <!-- TODO -  -->
+
 # Examples
+
 HTTPtestify allows you to make various HTTP requests, such as GET, POST, PUT, DELETE, and even file uploads. Below are examples demonstrating these request types.
 
 #### GET Request
@@ -115,8 +117,6 @@ server
 ```
 
 These examples demonstrate how to perform common HTTP requests, including downloading a file, using HTTPtestify. You can replace the route, payload, and resource ID with your specific API details when using these requests in your application.
-
-
 
 #### Authentication
 

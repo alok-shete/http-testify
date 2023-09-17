@@ -1,9 +1,5 @@
 import { requestInstance } from "../instances/request";
-import {
-  RequestConfigOptions,
-  RequestInstance,
-  ServerInstance,
-} from "../types";
+import { RequestConfigOptions, RequestInstance, ServerInstance } from "../types";
 
 /**
  * Configures and returns an instance of a request module based on a provided server instance.
@@ -38,10 +34,7 @@ import {
  * @see {@link RequestInstance} The type definition for the request module instance.
  */
 
-export function defaultModule(
-  server: ServerInstance,
-  configOptions?: RequestConfigOptions
-) {
+export function defaultModule(server: ServerInstance, configOptions?: RequestConfigOptions) {
   const module = requestInstance(server, configOptions) as RequestInstance;
 
   // Request interceptor
@@ -64,7 +57,7 @@ export function defaultModule(
         // If the error doesn't have a response (network error, timeout, etc.)
         return Promise.reject(error);
       }
-    }
+    },
   );
 
   return module;

@@ -33,19 +33,19 @@ describe("HttpTestify", () => {
     HTTPtestify.request(testExpressApp),
     HTTPtestify.request(`http://localhost:${testPort.one}`),
     HTTPtestify.request(testHttpApp, {
-      port: testPort.two
+      port: testPort.two,
     }).stayConnected(),
     HTTPtestify.request(http.createServer(testHttpApp), {
-      port: testPort.three
+      port: testPort.three,
     }).stayConnected(),
     HTTPtestify.request(testExpressApp, {
-      port: testPort.four
+      port: testPort.four,
     }).stayConnected(),
   ]) {
     describe("", () => {
       after(() => {
-        reference.closeConnection()
-      })
+        reference.closeConnection();
+      });
       for (const promise of ["all", "race", "allSettled"]) {
         for (const method of ["get", "post", "put", "delete"]) {
           for (const status of [200, 300, 400, 500]) {
@@ -53,9 +53,7 @@ describe("HttpTestify", () => {
               let response: any;
               if (method === "get" || method === "delete") {
                 response = await reference[promise]((instance) => [
-                  instance[method](
-                    `/${method}/${delayApi.delay}/${delayApi.status}`
-                  ),
+                  instance[method](`/${method}/${delayApi.delay}/${delayApi.status}`),
                   instance[method](`/${method}/0/${status}`),
                 ]);
               } else if (method === "post" || method === "put") {
@@ -117,6 +115,6 @@ describe("HttpTestify", () => {
           }
         });
       }
-    })
+    });
   }
 });

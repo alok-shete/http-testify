@@ -47,14 +47,11 @@ import { RequestApp, RequestConfigOptions, ServerInstance } from "../types";
  * @see {@link ServerInstance} The type definition for the extended server instance.
  */
 
-export function serverInstance(
-  app?: RequestApp,
-  configOptions?: RequestConfigOptions
-) {
+export function serverInstance(app?: RequestApp, configOptions?: RequestConfigOptions) {
   const { port = 65025 } = configOptions || {};
 
   let server: ServerInstance;
-  let keepOpen = false
+  let keepOpen = false;
 
   if (typeof app === "function") {
     server = http.createServer(app) as ServerInstance;
@@ -70,11 +67,11 @@ export function serverInstance(
     server.baseUrl = app;
   }
 
-
   server.start = function () {
     if (
       ["function", "object"].includes(typeof app) &&
-      typeof server.address != "undefined" && !keepOpen
+      typeof server.address != "undefined" &&
+      !keepOpen
     ) {
       server = server.listen(port);
     }
@@ -83,7 +80,8 @@ export function serverInstance(
   server.end = function () {
     if (
       ["function", "object"].includes(typeof app) &&
-      typeof server.getConnections !== "undefined" && !keepOpen
+      typeof server.getConnections !== "undefined" &&
+      !keepOpen
     ) {
       server.close();
     }
@@ -91,17 +89,17 @@ export function serverInstance(
 
   server.stayConnected = function () {
     if (!keepOpen) {
-      server.start()
+      server.start();
       keepOpen = true;
     }
-  }
+  };
 
   server.closeConnection = function () {
     if (keepOpen) {
       keepOpen = false;
-      server.close()
+      server.close();
     }
-  }
+  };
 
   return server;
 }
