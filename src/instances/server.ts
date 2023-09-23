@@ -47,42 +47,50 @@ import { RequestApp, RequestConfigOptions, ServerInstance } from "../types";
  * @see {@link ServerInstance} The type definition for the extended server instance.
  */
 
-export function serverInstance(
-  app?: RequestApp,
-  configOptions?: RequestConfigOptions
-) {
-  const { port = 65025 } = configOptions || {};
+export function serverInstance(app?: RequestApp, configOptions?: RequestConfigOptions) {
+  const { port = 65025 } = configOptions ?? {};
 
   let server: ServerInstance;
+  let keepOpen = false;
 
-  if (typeof app === "function") {
-    server = http.createServer(app) as ServerInstance;
-  } else if (typeof app === "object") {
-    server = app as ServerInstance;
-  } else {
-    server = {} as ServerInstance;
-  }
+  switch (typeof app) {
+    case "function":
+      server = http.createServer(app) as ServerInstance;
+      server.baseUrl = `http://localhost:${port}`;
 
-  if (["function", "object"].includes(typeof app)) {
-    server.baseUrl = `http://localhost:${port}`;
-  } else {
-    server.baseUrl = typeof app == "string" ? app : undefined;
+      break;
+    case "object":
+      server = app as ServerInstance;
+      server.baseUrl = `http://localhost:${port}`;
+
+      break;
+    default:
+      server = {} as ServerInstance;
+      server.baseUrl = app;
   }
 
   server.start = function () {
-    if (
-      ["function", "object"].includes(typeof app) &&
-      typeof server.address != "undefined"
-    ) {
+    if (typeof server.address != "undefined" && !keepOpen) {
       server = server.listen(port);
     }
   };
 
   server.end = function () {
-    if (
-      ["function", "object"].includes(typeof app) &&
-      typeof server.getConnections !== "undefined"
-    ) {
+    if (typeof server.getConnections !== "undefined" && !keepOpen) {
+      server.close();
+    }
+  };
+
+  server.stayConnected = function () {
+    if (!keepOpen) {
+      server.start();
+      keepOpen = true;
+    }
+  };
+
+  server.closeConnection = function () {
+    if (keepOpen) {
+      keepOpen = false;
       server.close();
     }
   };

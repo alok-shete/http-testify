@@ -5,8 +5,6 @@ testExpressApp.use(express.json());
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-
-
 testExpressApp.get("/get/:delay/:status", async (req, res) => {
   const { delay = 0, status = 200 } = req.params;
   await wait(Number(delay));

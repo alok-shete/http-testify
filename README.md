@@ -73,16 +73,16 @@ const promises = server
 
 ## Docs
 
-HTTPtestify provides a variety of methods to facilitate testing HTTP interactions. Check the [documentation](https://httptestify.web.app) for detailed information.
+HTTPtestify provides a variety of methods to facilitate testing HTTP interactions. Check the  <a href = "https://httptestify.web.app" target="_blank">documentation</a> for detailed information.
 
 ## Contributing
 
-Contributions to HTTPtestify are welcome! Feel free to submit issues and pull requests on the [GitHub repository](https://github.com/alok-shete/http-testify).
+Contributions to HTTPtestify are welcome! Feel free to submit issues and pull requests on the <a href = "https://github.com/alok-shete/http-testify" target="_blank">GitHub repository<a>.
 
 ## Donate
 
-Please consider donating if you think HTTPtestify is helpful to you or that my work is valuable. I am happy if you can help me [buy a cup of coffee. ❤️](https://www.buymeacoffee.com/shetealok)
+Please consider donating if you think HTTPtestify is helpful to you or that my work is valuable. I am happy if you can help me <a href = "https://www.buymeacoffee.com/shetealok" target="_blank">buy a cup of coffee. ❤️
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/alok-shete/http-testify/blob/main/LICENSE).
+This project is licensed under the<a href = "https://github.com/alok-shete/http-testify/blob/main/LICENSE" target="_blank">MIT License</a>

@@ -1,51 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTTP-Testify</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" href="./styles/vue.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <title>HTTP-Testify</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-  <link rel="stylesheet" href="./styles/vue.css" />
-</head>
-
-<body>
-  <div id="app" />
-  <script>
-    window.$docsify = {
-      name: "HTTP Testify",
-      repo: "https://github.com/alok-shete/http-testify",
-      coverpage: true,
-      subMaxLevel: 1, // Set the depth of sidebar links
-    };
-  </script>
-  <!-- Docsify v4 -->
-  <script src="./packages/docsify.js"></script>
-  <script src="./packages/prism-bash.min.js"></script>
-  <script src="./packages/prism-typescript.min.js"></script>
-  <script>
-
-    window.onload = function () {
-
-      const packageVersion = document.getElementById('packageVersion');
-
-      if (packageVersion) {
-        fetch("https://registry.npmjs.org/http-testify").then((res) => res.json()).then((data) => {
-          const { latest } = data["dist-tags"] || {}
-          if (latest) {
-            packageVersion.textContent = latest
-          }
-        }).catch((err) => console.log(err.message))
+    <style>
+      .app-name-link {
+        font-weight: 700 !important;
       }
 
+      div.sidebar-nav > ul > li > a.section-link {
+        font-weight: 600 !important;
+      }
 
-    };
+      img.bounce {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+        margin: 10px;
+        width: 130px;
+        animation: bounce 2s ease-in-out infinite;
+      }
 
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+    </style>
+  </head>
 
+  <body>
+    <div id="app"></div>
+    <a target="_blank" href="https://www.buymeacoffee.com/shetealok">
+      <img src="assets/bmc-button.svg" class="shake bounce" />
+    </a>
+    <script>
+      window.$docsify = {
+        name: "HTTP Testify",
+        repo: "https://github.com/alok-shete/http-testify",
+        coverpage: true,
+        subMaxLevel: 1, // Set the depth of sidebar links
+      };
+    </script>
+    <!-- Docsify v4 -->
+    <script src="./packages/docsify.js"></script>
+    <script src="./packages/prism-bash.min.js"></script>
+    <script src="./packages/prism-typescript.min.js"></script>
+    <script>
+      window.onload = function () {
+        const packageVersion = document.getElementById("packageVersion");
 
-  </script>
-</body>
-
+        if (packageVersion) {
+          fetch("https://registry.npmjs.org/http-testify")
+            .then((res) => res.json())
+            .then((data) => {
+              const { latest } = data["dist-tags"] || {};
+              if (latest) {
+                packageVersion.textContent = latest;
+              }
+            })
+            .catch((err) => console.log(err.message));
+        }
+      };
+    </script>
+  </body>
 </html>
 <!-- docsify serve docs -->

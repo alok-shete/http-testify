@@ -1,13 +1,31 @@
-import HTTPtestify from "../src";
+import { RequestInstance, request } from "../src";
 import testExpressApp from "./controller/servers/express";
 
-describe("Dev Test Cases", () => {
+const instance = request(testExpressApp);
+
+describe.skip("Dev Test Cases", () => {
+  before(() => {
+    instance.stayConnected();
+  });
+
+  after(() => {
+    instance.closeConnection();
+  });
+
   it("Simple", async () => {
-    const response = await HTTPtestify.request(testExpressApp).post("/post", {
-      delay: 30 * 100,
+    const instance = request(testExpressApp);
+
+    instance.stayConnected();
+    const respons1 = await instance.post("/post", {
       status: 200,
     });
-    console.log(response.status);
-    console.log(response.data);
+    console.log(respons1.status);
+    console.log(respons1.data);
+
+    const respons = await instance.get("/get/200");
+    console.log(respons1.status);
+    console.log(respons1.data);
+
+    instance.closeConnection();
   }).timeout(70 * 1000);
 });

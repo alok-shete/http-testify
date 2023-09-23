@@ -113,7 +113,7 @@ server
 
 The `OPTIONS` method is used to describe the communication options for the target resource.
 
-**Example***
+**Example**
 
 ```javascript
 const HTTPtestify = require("http-testify");

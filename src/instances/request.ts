@@ -39,11 +39,8 @@ import { RequestConfigOptions, ServerInstance } from "../types";
  * @see {@link ServerInstance} The type definition for the extended server instance.
  * @see {@link RequestConfigOptions} The type definition for the configuration options.
  */
-export function requestInstance(
-  server: ServerInstance,
-  configOptions?: RequestConfigOptions
-) {
-  const { timeout = 30 * 1000 } = configOptions || {};
+export function requestInstance(server: ServerInstance, configOptions?: RequestConfigOptions) {
+  const { timeout = 30 * 1000 } = configOptions ?? {};
   const instance = axios.create({
     baseURL: server.baseUrl,
     timeout: timeout,
