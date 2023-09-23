@@ -51,9 +51,10 @@ import { promiseModule } from "./modules/promise";
 export function request(app?: RequestApp, configOptions?: RequestConfigOptions): RequestInstance {
   const server = serverInstance(app, configOptions);
   const module = defaultModule(server, configOptions);
-  module.all = promiseModule(server, configOptions).all;
-  module.allSettled = promiseModule(server, configOptions).allSettled;
-  module.race = promiseModule(server, configOptions).race;
+  const promiseModuleInstance = promiseModule(server, configOptions);
+  module.all = promiseModuleInstance.all;
+  module.allSettled = promiseModuleInstance.allSettled;
+  module.race = promiseModuleInstance.race;
   module.closeConnection = server.closeConnection;
   module.stayConnected = () => {
     server.stayConnected();

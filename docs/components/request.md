@@ -103,3 +103,54 @@ server
 ```
 
 In this example, we use `server.allSettled` to send two GET requests in parallel to `/api/data1` and `/api/data2`. The `responses` variable contains an array of response states, allowing you to inspect both successful responses and errors.
+
+## stayConnected
+
+The `stayConnected` function is used to ensure that the connection to the server is maintained, preventing it from being closed automatically. This can be useful when you want to keep the connection open for a longer duration.
+
+By calling `stayConnected`, you can make sure that the connection to the server remains active until you explicitly close it.
+
+## closeConnection
+
+The `closeConnection` function is used to manually close the connection to the server. This is helpful when you want to release resources or close connections that are no longer needed.
+
+By calling `closeConnection`, you can gracefully terminate the connection to the server.
+
+
+**Example**
+
+```javascript
+const HTTPtestify = require("http-testify");
+const app = require("./your-app"); // Replace with your actual app instance
+
+// Create a mock server instance with the target app and port
+const server = HTTPtestify.request(app);
+
+// Ensure that the connection stays open
+server.stayConnected();
+
+(async () => {
+  try {
+    // Make a POST request
+    const response1 = await server.post("/post", {
+      status: 200,
+    });
+    console.log("POST Response Status:", response1.status);
+    console.log("POST Response Data:", response1.data);
+
+    // Make a GET request
+    const response2 = await server.get("/get/200");
+    console.log("GET Response Status:", response2.status);
+    console.log("GET Response Data:", response2.data);
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    // Close the connection manually
+    server.closeConnection();
+  }
+})();
+
+```
+> Note: If you use the `stayConnected` function, it's important to call `closeConnection` when you're done with the connection. Failing to do so may result in the program not closing the connection properly.
+
+

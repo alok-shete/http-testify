@@ -3,7 +3,7 @@ import testExpressApp from "./controller/servers/express";
 
 const instance = request(testExpressApp);
 
-describe("Dev Test Cases", () => {
+describe.skip("Dev Test Cases", () => {
   before(() => {
     instance.stayConnected();
   });
@@ -13,16 +13,19 @@ describe("Dev Test Cases", () => {
   });
 
   it("Simple", async () => {
-    const response = await Promise.race([
-      instance.post("/post", {
-        status: 200,
-      }),
-      instance.put("/put", {
-        delay: 3 * 1000,
-        status: 300,
-      }),
-    ]);
-    console.log(response.status);
-    console.log(response.data);
+    const instance = request(testExpressApp);
+
+    instance.stayConnected();
+    const respons1 = await instance.post("/post", {
+      status: 200,
+    })
+    console.log(respons1.status);
+    console.log(respons1.data);
+
+    const respons = await instance.get("/get/200")
+    console.log(respons1.status);
+    console.log(respons1.data);
+
+    instance.closeConnection();
   }).timeout(70 * 1000);
 });

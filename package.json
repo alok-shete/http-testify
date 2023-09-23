@@ -42,9 +42,8 @@
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "test": "nyc --reporter=lcov --reporter=html mocha --require ts-node/register",
     "test-suite": "yarn test test/**/*.test.ts",
-    "prepare": "npm run build",
     "prepublishOnly": "npm run test-suite",
-    "format": "eslint --fix . && prettier --write ."
+    "format": "prettier --write . && eslint --fix . "
   },
   "files": [
     "dist",
@@ -55,6 +54,7 @@
     "@types/chai": "^4.3.5",
     "@types/express": "^4.17.17",
     "@types/mocha": "^10.0.1",
+    "@types/node": "^20.6.2",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "chai": "^4.3.8",
