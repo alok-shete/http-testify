@@ -18,11 +18,11 @@ describe.skip("Dev Test Cases", () => {
     instance.stayConnected();
     const respons1 = await instance.post("/post", {
       status: 200,
-    })
+    });
     console.log(respons1.status);
     console.log(respons1.data);
 
-    const respons = await instance.get("/get/200")
+    const respons = await instance.get("/get/200");
     console.log(respons1.status);
     console.log(respons1.data);
 

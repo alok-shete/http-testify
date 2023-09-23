@@ -116,7 +116,6 @@ The `closeConnection` function is used to manually close the connection to the s
 
 By calling `closeConnection`, you can gracefully terminate the connection to the server.
 
-
 **Example**
 
 ```javascript
@@ -149,8 +148,6 @@ server.stayConnected();
     server.closeConnection();
   }
 })();
-
 ```
+
 > Note: If you use the `stayConnected` function, it's important to call `closeConnection` when you're done with the connection. Failing to do so may result in the program not closing the connection properly.
-
-
