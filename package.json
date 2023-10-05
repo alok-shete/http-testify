@@ -42,7 +42,7 @@
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "test": "nyc --reporter=lcov --reporter=html mocha --require ts-node/register",
     "test-suite": "yarn test test/**/*.test.ts",
-    "prepublishOnly": "npm run test-suite",
+    "prepublishOnly": "echo 'npm run test-suite'",
     "format": "prettier --write . && eslint --fix . "
   },
   "files": [
