@@ -32,17 +32,13 @@
     "Mocking Server",
     "REST API Testing"
   ],
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
-  "typings": "dist/esm/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "yarn build:esm && yarn build:cjs",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build": "tsc",
     "test": "nyc --reporter=lcov --reporter=html mocha --require ts-node/register",
     "test-suite": "yarn test test/**/*.test.ts",
-    "prepublishOnly": "echo npm run test-suite",
+    "prepublishOnly": "npm run test-suite",
     "format": "prettier --write . && eslint --fix . "
   },
   "files": [
