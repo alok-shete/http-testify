@@ -1,6 +1,6 @@
 {
   "name": "http-testify",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Node.js library for testing HTTP servers.",
   "author": "Alok Shete",
   "license": "MIT",
